@@ -301,7 +301,7 @@ Protected Source License - See [LICENSE](LICENSE) file
 
 *"Mental wellness is not a luxury, it's a necessity"*
 
-**Jai Shri Krishna 🙏**
+
 
 </div>
 ```
