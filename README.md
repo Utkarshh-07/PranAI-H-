@@ -211,7 +211,7 @@ lib/
 
 ## 🎥 Demo Video
 
-[▶️ Watch PranAI Demo (7:56 min)](https://youtu.be/LhMP8Brz7Gs)
+[▶️ Watch PranAI Demo (7:56 min)](https://youtu.be/u7oXD89_X_M)
 
 ### Video Covers:
 
