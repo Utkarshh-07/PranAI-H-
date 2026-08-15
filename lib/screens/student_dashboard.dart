@@ -2,6 +2,11 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 import '../features/my_space/my_space_screen.dart';
+import '../widgets/floating_cloud.dart';
+import 'ai_chat/ai_home_screen.dart';
+import '../services/parent_summary_service.dart';
+import '../services/notification_service.dart';
+import '../screens/parent/parent_summary_screen.dart';
 
 // ============ OCEAN COLOR SCHEME ============
 const Color deepOcean = Color(0xFF0A2463);
@@ -635,7 +640,9 @@ class OceanHeader extends StatelessWidget {
               ),
               IconButton(
                 icon: const Icon(Icons.notifications_active, color: Colors.white, size: 28),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/notification-settings');
+                },
               ),
             ],
           ),
@@ -661,7 +668,7 @@ class OceanHeader extends StatelessWidget {
                   ),
                   child: const Center(
                     child: Text(
-                      "MJ",
+                      "UT",
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -676,7 +683,7 @@ class OceanHeader extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        "Mark Johnson",
+                        "Utkarsh",
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
@@ -698,6 +705,143 @@ class OceanHeader extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+// ============ TEST PANEL ============
+class TestPanel extends StatelessWidget {
+  const TestPanel({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.black.withOpacity(0.6),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.orange.withOpacity(0.5)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(Icons.build, color: Colors.orange, size: 20),
+              const SizedBox(width: 8),
+              const Text(
+                '🔧 TEST PANEL',
+                style: TextStyle(
+                  color: Colors.orange,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
+              ),
+              const Spacer(),
+              Text(
+                'For Testing Only',
+                style: TextStyle(
+                  color: Colors.white.withOpacity(0.5),
+                  fontSize: 10,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              _buildTestButton(
+                context: context,
+                label: 'Generate Summary',
+                icon: Icons.summarize,
+                color: Colors.green,
+                onTap: () async {
+                  final summary = await ParentSummaryService().generateDailySummary(
+                    studentId: 'user_utkarsh',
+                    parentId: 'parent_utkarsh',
+                    date: DateTime.now(),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Summary: ${summary['summary'].toString().substring(0, 50)}...'),
+                      backgroundColor: Colors.green,
+                    ),
+                  );
+                },
+              ),
+              _buildTestButton(
+                context: context,
+                label: 'View Summaries',
+                icon: Icons.history,
+                color: Colors.blue,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ParentSummaryScreen(parentId: 'parent_utkarsh'),
+                    ),
+                  );
+                },
+              ),
+              _buildTestButton(
+                context: context,
+                label: 'Test Notification',
+                icon: Icons.notifications,
+                color: Colors.purple,
+                onTap: () async {
+                  await NotificationService().sendNotificationToUser(
+                    userId: 'parent_utkarsh',
+                    title: 'PRANA Test',
+                    body: 'This is a test notification from PRANA!',
+                    type: 'test',
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Test notification sent!')),
+                  );
+                },
+              ),
+              _buildTestButton(
+                context: context,
+                label: 'Test Push',
+                icon: Icons.push_pin,
+                color: Colors.orange,
+                onTap: () {
+                  // Test push notification - will be implemented with FCM
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Push notifications require FCM setup'),
+                      backgroundColor: Colors.orange,
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTestButton({
+    required BuildContext context,
+    required String label,
+    required IconData icon,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
+    return ElevatedButton.icon(
+      onPressed: onTap,
+      icon: Icon(icon, size: 16),
+      label: Text(label, style: const TextStyle(fontSize: 12)),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: color,
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        minimumSize: Size.zero,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
       ),
     );
   }
@@ -755,18 +899,15 @@ class OceanQuickActions extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              // AI CHAT BUTTON
               _buildQuickAction(
                 context: context,
                 icon: Icons.smart_toy,
-                label: 'AI Chat',
-                creature: '🐬',
+                label: 'AI Friends',
+                creature: '🤖',
                 color: seaTeal,
                 onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    '/character_selection',
-                    arguments: parentData,
-                  );
+                  Navigator.pushNamed(context, '/ai_home');
                 },
               ),
               
@@ -1040,9 +1181,9 @@ class _StudentDashboardState extends State<StudentDashboard> {
 
   final List<Widget> _screens = [
     const DashboardContent(), // 0: Dashboard
-    const PlaceholderScreen(title: 'AI Chat'), // 1: AI Chat
+    const PlaceholderScreen(title: 'AI Chat'), // 1: AI Chat (placeholder)
     const PlaceholderScreen(title: 'Mindful'), // 2: Mindful
-    const PlaceholderScreen(title: 'My Space'), // 3: My Space (will be replaced)
+    const PlaceholderScreen(title: 'My Space'), // 3: My Space
     const PlaceholderScreen(title: 'Profile'), // 4: Profile
   ];
 
@@ -1074,13 +1215,21 @@ class _StudentDashboardState extends State<StudentDashboard> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             _buildNavItem(Icons.dashboard, "Dashboard", "🌊", 0),
-            _buildNavItem(Icons.chat, "AI Chat", "🐬", 1),
+            _buildNavItem(Icons.smart_toy, "AI Chat", "🤖", 1),
             _buildNavItem(Icons.self_improvement, "Mindful", "🧘", 2),
             _buildNavItem(Icons.calendar_month, "My Space", "📅", 3),
             _buildNavItem(Icons.person, "Profile", "👤", 4),
           ],
         ),
       ),
+      floatingActionButton: const Padding(
+        padding: EdgeInsets.only(bottom: 70, right: 16),
+        child: FloatingCloud(
+          unreadCount: 3,
+          hasUrgent: true,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 
@@ -1090,16 +1239,11 @@ class _StudentDashboardState extends State<StudentDashboard> {
       onTap: () {
         setState(() => _selectedIndex = index);
         
-        // Handle navigation for specific tabs
-        if (index == 1) { // AI Chat tab
-          Navigator.pushNamed(
-            context,
-            '/character_selection',
-            arguments: widget.parentData,
-          );
-        } else if (index == 2) { // Mindfulness tab
+        if (index == 1) {
+          Navigator.pushNamed(context, '/ai_home');
+        } else if (index == 2) {
           Navigator.pushNamed(context, '/mindfulness_home');
-        } else if (index == 3) { // My Space tab
+        } else if (index == 3) {
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -1107,7 +1251,6 @@ class _StudentDashboardState extends State<StudentDashboard> {
             ),
           );
         }
-        // Dashboard (index 0) and Profile (index 4) stay on dashboard
       },
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -1231,6 +1374,8 @@ class DashboardContent extends StatelessWidget {
             OceanQuickActions(parentData: parentData),
             const SizedBox(height: 25),
             const MentalWellnessCard(),
+            const SizedBox(height: 25),
+            const TestPanel(), // ADDED TEST PANEL HERE
             const SizedBox(height: 25),
             const OceanFooter(),
             const SizedBox(height: 30),
