@@ -149,7 +149,7 @@ lib/
 
 ## 🎥 Demo Video
 
-[▶️ Watch the PranAI demo (5:35)](https://youtu.be/u7oXD89_X_M)
+[▶️ Watch the PranAI demo (5:35)](https://youtu.be/3FWqZKaZCSk)
 
 **Covers:**
 - ✅ Student login & dashboard
