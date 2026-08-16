@@ -12,7 +12,6 @@ Two things are intentionally simplified for this submission, and I'd rather tell
 
 **Push notifications are simulated via local notifications, not FCM.** The real-time alert *logic* — what triggers an alert, what a parent sees versus what stays private — is fully implemented and demonstrated. The actual cross-device delivery mechanism (Firebase Cloud Messaging) is the next build step.
 
-I'm flagging this directly because I'd rather you trust everything else in this submission than wonder where the line is. PranAI started six months ago, outside this hackathon, because of a real conversation I had with my own parents — not because of a hackathon prompt. The parts that are real are real because I built them before this event existed. The parts that are simplified, I'm telling you myself.
 
 <div align="center">
 
