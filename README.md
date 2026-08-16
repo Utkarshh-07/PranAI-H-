@@ -30,15 +30,16 @@ I'm flagging this directly because I'd rather you trust everything else in this 
 2. [The Solution](#-the-solution-pranai)
 3. [Tech Stack](#-tech-stack)
 4. [What's Demonstrated](#-whats-demonstrated)
-5. [Demo Flow](#-demo-flow)
-6. [Project Structure](#-project-structure)
-7. [Demo Credentials](#-demo-credentials)
-8. [Demo Video](#-demo-video)
-9. [Local Setup](#-local-setup)
-10. [What Makes PranAI Different](#-what-makes-pranai-different)
-11. [Roadmap](#-roadmap)
-12. [Team](#-team)
-13. [License](#-license)
+5. [A Real Example](#-a-real-example)
+6. [Demo Flow](#-demo-flow)
+7. [Project Structure](#-project-structure)
+8. [Demo Credentials](#-demo-credentials)
+9. [Demo Video](#-demo-video)
+10. [Local Setup](#-local-setup)
+11. [What Makes PranAI Different](#-what-makes-pranai-different)
+12. [Roadmap](#-roadmap)
+13. [Team](#-team)
+14. [License](#-license)
 
 ---
 
@@ -83,6 +84,22 @@ Real-time alerts when a concerning pattern shows up, an insight dashboard for em
 
 ### 🛡️ Safety System
 A 5-tier escalation path — from a quiet logged note, up to an immediate alert with helplines surfaced for high-risk language. Higher tiers require parent contact to be actioned; this isn't a single flat "check-in," it actually changes what a parent knows and when.
+
+---
+
+## 💬 A Real Example
+
+This is the actual Parent Bridge translation, not a hypothetical.
+
+**Student types (private — this never leaves the app):**
+> "I have 3 exams next week. I'm so scared I'll fail. I can't sleep. Mom will be so disappointed."
+
+**What the parent actually sees:**
+> Your child had a difficult day emotionally. They're feeling scared about upcoming exams and worried about disappointing you.
+>
+> **Tonight, try this:** "I love you no matter what marks you get."
+
+Nothing in the top box reaches the parent. The raw words stay private — what gets translated across is the feeling underneath them, plus one specific thing to say. That's the whole product in one exchange.
 
 ---
 
