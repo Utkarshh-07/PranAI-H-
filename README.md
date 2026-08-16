@@ -1,37 +1,18 @@
+# 🌊 PranAI — AI Mental Wellness for Indian Students
 
-# 🌊 PranAI - AI Mental Wellness for Indian Students
+**PranAI** is Sanskrit, roughly: "intelligence that nurtures your life energy."
 
-**PranAI means → "Intelligence that nurtures your life energy"**
+## 📌 A Note for Judges, Upfront
 
-## 📌 Important Note for Judges
+Everything marked "✅ Demo Ready" below is genuinely built and working — the UI, the navigation flows, the gamification system, the parent dashboard, the safety-alert logic — all of it runs live in this build.
 
-Everything marked "✅ Demo Ready" above is genuinely built and working — the 
-UI, the navigation flows, the gamification system, the parent dashboard, 
-the 4-level safety protocol logic — all of it runs live in this build.
+Two things are intentionally simplified for this submission, and I'd rather tell you exactly what and why than have you guess:
 
-Two things are intentionally simplified for this submission, and I want 
-to be upfront about exactly what and why:
+**AI responses are currently rule-based, not live LLM-generated.** The architecture is built to plug in GPT-5.4 Mini directly — the integration point already exists in the codebase — but for this hackathon I used keyword-based emotional detection instead of a live API call, so the demo stays fast and reliable for judging without API latency or cost getting in the way.
 
-**AI responses are currently rule-based, not live LLM-generated.** The 
-architecture is built to plug in GPT-5.4 Mini directly — the integration 
-point exists in the codebase — but for this hackathon I used keyword-based 
-emotional detection instead of a live API call, to keep the demo fast and 
-reliable for judging without API latency or cost during evaluation.
+**Push notifications are simulated via local notifications, not FCM.** The real-time alert *logic* — what triggers an alert, what a parent sees versus what stays private — is fully implemented and demonstrated. The actual cross-device delivery mechanism (Firebase Cloud Messaging) is the next build step.
 
-**Push notifications are simulated via local notifications, not FCM.** 
-The real-time alert *logic* — what triggers an alert, what a parent sees 
-versus what stays private — is fully implemented and demonstrated. The 
-delivery mechanism (actual cross-device push via Firebase Cloud Messaging) 
-is the next build step.
-
-I'm flagging this directly because I'd rather you trust everything else 
-in this submission than have you wonder where the line is. PranAI started 
-six months ago, outside this hackathon, because of a real conversation 
-I had with my own parents — not because of a hackathon prompt. The parts 
-that are real are real because I built them before this event existed. 
-The parts that are simplified, I'm telling you so myself.
-
-> ⚠️ **Hackathon Submission Notice:** Demo/Prototype version for Hackathon. Full production version with real-time AI integration in development.
+I'm flagging this directly because I'd rather you trust everything else in this submission than wonder where the line is. PranAI started six months ago, outside this hackathon, because of a real conversation I had with my own parents — not because of a hackathon prompt. The parts that are real are real because I built them before this event existed. The parts that are simplified, I'm telling you myself.
 
 <div align="center">
 
@@ -45,47 +26,38 @@ The parts that are simplified, I'm telling you so myself.
 
 ## 📋 Table of Contents
 
-1. [Problem Statement](#-problem-statement)
-2. [Our Solution](#-our-solution-pranai)
+1. [The Problem](#-the-problem)
+2. [The Solution](#-the-solution-pranai)
 3. [Tech Stack](#-tech-stack)
-4. [Features Demonstrated](#-features-demonstrated)
+4. [What's Demonstrated](#-whats-demonstrated)
 5. [Demo Flow](#-demo-flow)
-6. [UI Preview](#-ui-preview)
-7. [Project Structure](#-project-structure)
-8. [Demo Credentials](#-demo-credentials)
-9. [Demo Video](#-demo-video)
-10. [Local Setup](#-local-setup)
-11. [What Makes PranAI Unique](#-what-makes-pranai-unique)
-12. [Future Roadmap](#-future-roadmap)
-13. [Important Note for Judges](#-important-note-for-judges)
-14. [Team](#-team)
-15. [License](#-license)
+6. [Project Structure](#-project-structure)
+7. [Demo Credentials](#-demo-credentials)
+8. [Demo Video](#-demo-video)
+9. [Local Setup](#-local-setup)
+10. [What Makes PranAI Different](#-what-makes-pranai-different)
+11. [Roadmap](#-roadmap)
+12. [Team](#-team)
+13. [License](#-license)
 
 ---
 
-## 🎯 Problem Statement
+## 🎯 The Problem
 
-- **87%** of Indian students experience exam-related anxiety
-- **1 in 4** teenagers feel persistently sad or hopeless
-- **70%** never seek help due to stigma or fear
-- **₹1500-3000** is the cost of traditional therapy per session
+87% of Indian students report exam-related anxiety. 1 in 4 teenagers feel persistently sad or hopeless. 70% never seek help, mostly out of stigma or fear — and when they do look for it, therapy runs ₹1,500–3,000 a session, which most families can't treat as routine.
 
-**The Gap:** Parents want to help but are left in the dark. Students want support but fear judgment.
+**The gap:** it isn't that parents don't care. It's that parents are left in the dark, and students are scared to be the one who breaks the silence first.
 
 ---
 
-## 💡 Our Solution: PranAI
-
-> *PranAI* (Sanskrit for "life force") - AI-powered mental wellness platform
-
-### Features:
+## 💡 The Solution: PranAI
 
 | Feature | Description | Status |
-|---------|-------------|--------|
-| 🤖 **AI Companions** | 24/7 AI friends with different personalities | ✅ Demo Ready |
+|---|---|---|
+| 🤖 **AI Companions** | 24/7 AI friends, four different personalities | ✅ Demo Ready |
 | 👨‍👩‍👧‍👦 **Parent Alerts** | Real-time notifications for emotional patterns | ✅ Demo Ready |
 | 🎮 **Gamified Wellness** | Shell collection, streaks, achievements | ✅ Demo Ready |
-| 🛡️ **Safety System** | 4-level prankster detection & verification | ✅ Demo Ready |
+| 🛡️ **Safety System** | 5-tier emotional risk detection & escalation | ✅ Demo Ready |
 | 📊 **Daily Summaries** | AI-generated wellbeing insights for parents | ✅ Demo Ready |
 
 ---
@@ -93,92 +65,41 @@ The parts that are simplified, I'm telling you so myself.
 ## 🏗️ Tech Stack
 
 | Layer | Technology |
-|-------|------------|
+|---|---|
 | **Frontend** | Flutter / Dart |
 | **Backend** | Firebase (Auth, Firestore) |
-| **AI / ML** | Mock AI Responses (Demo) / GPT API (Planned) |
-| **Notifications** | Local Notifications (Demo) / FCM (Planned) |
+| **AI / ML** | Rule-based responses (demo) / GPT-5.4 Mini (planned) |
+| **Notifications** | Local notifications (demo) / FCM (planned) |
 
 ---
 
-## 📱 Features Demonstrated
+## 📱 What's Demonstrated
 
 ### 👤 Student Side
-
-| Feature | Description |
-|---------|-------------|
-| AI Chat Interface | 4 unique personalities (Alex, Jordan, Taylor, Casey) |
-| Emotional Analysis | Keyword-based emotion detection |
-| Ocean-themed UI | Calming visual design with animations |
-| Shell Collection | Earn shells for positive habits |
-| Daily Streaks | Track consistency and achievements |
+AI chat interface with four distinct personalities (Alex, Jordan, Taylor, Casey), keyword-based emotional analysis, a calming ocean-themed UI, shell collection for positive habits, and daily streak tracking.
 
 ### 👨‍👩‍👧 Parent Side
+Real-time alerts when a concerning pattern shows up, an insight dashboard for emotional wellness trends, specific "here's something you could say tonight" suggestions instead of vague reassurance, quick access to emergency helplines, and AI-generated daily summaries.
 
-| Feature | Description |
-|---------|-------------|
-| Real-time Alerts | Push notifications for student concerns |
-| Insight Dashboard | View child's emotional wellness trends |
-| Actionable Tips | "Say this, try this" suggestions |
-| Emergency Helplines | Quick access to crisis resources |
-| Daily Summaries | AI-generated wellbeing reports |
-
-### 🛡️ Safety Features
-
-| Feature | Description |
-|---------|-------------|
-| 4-Level Prankster Detection | Progressive warnings and consequences |
-| Parent Verification | Mandatory parent contact for pranksters |
-| Emergency Protocols | Clear steps + helpline integration |
+### 🛡️ Safety System
+A 5-tier escalation path — from a quiet logged note, up to an immediate alert with helplines surfaced for high-risk language. Higher tiers require parent contact to be actioned; this isn't a single flat "check-in," it actually changes what a parent knows and when.
 
 ---
 
 ## 🔄 Demo Flow
 
 ### Scenario 1: Student Stress → Parent Alert
-
-1. Student logs in → Opens AI chat with "Alex"
+1. Student logs in → opens AI chat with Alex
 2. Types: "I'm really stressed about my upcoming exams"
-3. AI responds with empathetic message
-4. Parent receives push notification instantly
-5. Parent views insight & actionable tip
+3. AI responds with an empathetic message
+4. Parent receives a notification instantly
+5. Parent views the insight and an actionable suggestion
 
 ### Scenario 2: Student Achievement → Parent Celebration
-
 1. Student shares: "I finally finished my project!"
-2. AI detects positive pattern
-3. Parent receives celebration alert
+2. AI detects the positive pattern
+3. Parent receives a celebration alert instead of a concern alert
 4. Suggested response: "I'm proud of your hard work!"
-
----
-
-## 📸 UI Preview
-
-### Student Dashboard
-
-| Stat | Value |
-|------|-------|
-| 😊 Mood Tracking | 85% |
-| 😴 Sleep Quality | 72% |
-| 🧘 Meditation Streak | 14 days |
-| 🤖 AI Sessions | 52 sessions |
-
-### AI Chat Interface
-
-| Speaker | Message |
-|---------|---------|
-| **Alex** | "Hi! How are you feeling today? 🧘" |
-| **User** | "I'm stressed about my exams" |
-| **Alex** | "Take a deep breath. You've got this. 🧘" |
-
-### Parent Dashboard
-
-| Insight | Value |
-|---------|-------|
-| Today's Emotional Weather | Calm & Happy |
-| Stress Level | 3/10 |
-| Sleep Quality | Excellent |
-| New Insight | "Your child seems to be handling stress well today" |
 
 ---
 
@@ -189,11 +110,11 @@ lib/
 ├── screens/
 │   ├── ai_chat/          # AI companion chat system
 │   ├── parent/           # Parent dashboard & alerts
-│   ├── chat/             # Student chat system
-│   └── auth/             # Authentication flows
-├── services/             # Firebase, AI, Notifications
-├── models/               # Data models
-└── widgets/              # Reusable components
+│   ├── chat/              # Student chat system
+│   └── auth/              # Authentication flows
+├── services/              # Firebase, AI, Notifications
+├── models/                # Data models
+└── widgets/                # Reusable components
 ```
 
 ---
@@ -201,7 +122,7 @@ lib/
 ## 🚀 Demo Credentials
 
 | Role | Email | Password |
-|------|-------|----------|
+|---|---|---|
 | 👨‍🎓 **Student** | test@test.com | test123 |
 | 👨‍👩‍👧 **Parent** | test@test.com | test123 |
 
@@ -211,10 +132,9 @@ lib/
 
 ## 🎥 Demo Video
 
-[▶️ Watch PranAI Demo (5:35 min)](https://youtu.be/u7oXD89_X_M)
+[▶️ Watch the PranAI demo (5:35)](https://youtu.be/u7oXD89_X_M)
 
-### Video Covers:
-
+**Covers:**
 - ✅ Student login & dashboard
 - ✅ AI chat with emotional support
 - ✅ Parent notification system
@@ -226,18 +146,20 @@ lib/
 ## 🛠️ Local Setup
 
 ```bash
-git clone https://github.com/Utkarshh-07/PranAI.git
-cd prana
+git clone https://github.com/Utkarshh-07/PranAI-H-.git
+cd PranAI-H-
 flutter pub get
 flutter run
 ```
 
 ---
 
-## 🎯 What Makes PranAI Unique
+## 🎯 What Makes PranAI Different
+
+Most student wellness apps stop at the student — they're a private journal or a chatbot, and the parent never enters the picture. PranAI is built around the opposite bet: that the person best positioned to help a struggling student is usually already in the house, and just doesn't know tonight is the night to say something.
 
 | Feature | Other Apps | **PranAI** |
-|---------|------------|-------------|
+|---|---|---|
 | Parent involvement | ❌ No | ✅ **Yes** |
 | Real-time alerts | ❌ No | ✅ **Yes** |
 | Privacy protection | ❌ Compromised | ✅ **Parents never see chats** |
@@ -246,52 +168,25 @@ flutter run
 
 ---
 
-## 🔮 Future Roadmap
+## 🔮 Roadmap
 
-- [ ] **Phase 1:** Real GPT API integration
+- [ ] **Phase 1:** Real GPT-5.4 Mini API integration
 - [ ] **Phase 2:** Video call support with AI characters
 - [ ] **Phase 3:** Peer support groups for students
 - [ ] **Phase 4:** Professional counselor integration
-- [ ] **Phase 5:** Regional language support
-
----
-
-## ⚠️ Important Note for Judges
-
-**This is a DEMO/PROTOTYPE for Vibe Coding Hackathon 2026.**
-
-### ✅ Working in Demo:
-
-- UI/UX flows
-- Parent alert system
-- Push notifications
-- Complete navigation
-- Simulated AI responses
-
-### 🚀 Production Version Will Include:
-
-- Real GPT-5.4 Mini API
-- Cloud push notifications (FCM)
-- Real-time database sync
-- Scalable backend infrastructure
+- [ ] **Phase 5:** Regional language support (Hindi, Tamil, Telugu)
 
 ---
 
 ## 👥 Team
 
-### Code with Utkarsh
-
-| Role | Name |
-|------|------|
-| Lead Developer | Utkarsh |
-
-*Full-stack Flutter + Firebase development*
+**Utkarsh Pawar** — solo developer 🧑‍💻, full-stack Flutter + Firebase.
 
 ---
 
 ## 📝 License
 
-Protected Source License - See [LICENSE](LICENSE) file
+Protected Source License — see [LICENSE](LICENSE) file.
 
 ---
 
@@ -299,13 +194,6 @@ Protected Source License - See [LICENSE](LICENSE) file
 
 **Made with ❤️ for India's Students**
 
-*"Mental wellness is not a luxury, it's a necessity"*
-
-
+*"Mental wellness is not a luxury, it's a necessity."*
 
 </div>
-```
-
----
-
-
